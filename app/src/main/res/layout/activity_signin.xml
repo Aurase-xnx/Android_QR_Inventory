@@ -26,24 +26,19 @@
 
     <EditText
         android:id="@+id/signin_password"
+        android:inputType="textPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/signin_username"
         android:paddingBottom="10dp"></EditText>
 
-    <EditText
-        android:id="@+id/signin_passwordConf"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/signin_password"
-        android:paddingBottom="10dp"></EditText>
 
     <Button
         android:id="@+id/signin_signBT"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Sign In"
-        app:layout_constraintTop_toBottomOf="@id/signin_passwordConf"
+        app:layout_constraintTop_toBottomOf="@id/signin_password"
         android:layout_marginBottom="10dp"></Button>
 
     <Button
