@@ -37,6 +37,14 @@
             android:name=".MainMenuActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".UserManagementActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".InventoryActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>
