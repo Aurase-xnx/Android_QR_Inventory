@@ -15,6 +15,11 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+        val credits = findViewById<Button>(R.id.main_credits)
+        credits.setOnClickListener(){
+            val intent = Intent(this, CreditsActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 }
