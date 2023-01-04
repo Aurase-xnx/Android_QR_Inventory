@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 
 class MainMenuActivity : AppCompatActivity() {
@@ -35,5 +36,19 @@ class MainMenuActivity : AppCompatActivity() {
             val intent = Intent(this, InventoryActivity::class.java)
             startActivity(intent)
         }
+    }
+    override fun onBackPressed() {
+        val confirm = AlertDialog.Builder(this)
+            .setMessage("Êtes-vous sûr de vouloir vous déconnecter ?")
+            .setTitle("Déconnexion")
+            .setPositiveButton("Oui") { dialog, _ ->
+                dialog.dismiss()
+                finish()
+            }
+            .setNegativeButton("Non") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+        confirm.show()
     }
 }

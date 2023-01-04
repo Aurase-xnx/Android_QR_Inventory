@@ -27,17 +27,22 @@ class InventoryActivity : AppCompatActivity() {
 
         val dbHelper = InventoryDBHelper(this@InventoryActivity)
         val db = dbHelper.readableDatabase
+        val createTableSql = "CREATE TABLE IF NOT EXISTS inventory (itemName TEXT PRIMARY KEY, description TEXT, qrCode TEXT)"
+        db.execSQL(createTableSql)
         val cursor = db.query("inventory", null, null, null, null, null, null)
 
         if (cursor.moveToFirst()) {
-            val id = cursor.getInt(cursor.getColumnIndex("id"))
-            val name = cursor.getString(cursor.getColumnIndex("name"))
-            val description = cursor.getString(cursor.getColumnIndex("description"))
+            do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
+                val name = cursor.getString(cursor.getColumnIndexOrThrow("itemName"))
+                val description = cursor.getString(cursor.getColumnIndexOrThrow("description"))
+                val status = cursor.getInt(cursor.getColumnIndexOrThrow("status"))
 
-            inventoryId.setText(id.toString())
-            inventoryName.setText(name)
-            inventoryDescription.setText(description)
-
+                inventoryId.setText(id.toString())
+                inventoryName.setText(name)
+                inventoryDescription.setText(description)
+                inventoryStatus.setText(status)
+            } while (cursor.moveToNext())
         }
     }
 }

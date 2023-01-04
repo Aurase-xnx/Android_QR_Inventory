@@ -34,10 +34,6 @@ class SigninActivity : AppCompatActivity() {
                 Toast.makeText(this@SigninActivity, "Please fill out all fields.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            if (username == "Admin")
-            {
-                rights = 100
-            }
 
             if (password.length < 4) {
                 Toast.makeText(this@SigninActivity, "The password must be at least 4 characters long.", Toast.LENGTH_SHORT).show()
@@ -56,7 +52,6 @@ class SigninActivity : AppCompatActivity() {
                 val values = ContentValues()
                 values.put("username", username)
                 values.put("password", password)
-                values.put("rights", rights)
                 db.insert("login", null, values)
                 Toast.makeText(this@SigninActivity, "Inscription réussie", Toast.LENGTH_SHORT).show()
                 // Démarrer l'activité de connexion
