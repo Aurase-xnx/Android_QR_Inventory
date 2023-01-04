@@ -1,10 +1,12 @@
 package com.example.dilhan_eser_project
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet.Layout
 
@@ -28,7 +30,31 @@ class UserManagementActivity : AppCompatActivity() {
 
         userListView.setOnItemClickListener { parent, view, position, id ->
         val item = parent.getItemAtPosition(position)
-            Log.d("position","= $item")
+        Log.d("position","= $position")
+        val searchedId = position+1
+        val cursor = db.query("login",null,"_id = ?", arrayOf(searchedId.toString()),null,null,null)
+            if (cursor.moveToFirst()){
+                val username = cursor.getString(cursor.getColumnIndexOrThrow("username"))
+                val password = cursor.getString(cursor.getColumnIndexOrThrow("password"))
+
+                val delModDialog = AlertDialog.Builder(this)
+                    .setMessage(username)
+                    .setTitle("Voulez vous modifier ou supprimer cet utilisateur ?")
+                    .setPositiveButton("Modifier"){ dialog, _ ->
+                        val intent = Intent(this,CreditsActivity::class.java)
+                        intent.putExtra("username",username)
+                        intent.putExtra("password",password)
+                        startActivity(intent)
+                    }
+                    .setNegativeButton("Supprimer"){dialog, _ ->
+                        val intent = Intent(this,MainMenuActivity::class.java)
+                        intent.putExtra("username",username)
+                        intent.putExtra("password",password)
+                        startActivity(intent)
+                    }
+                    .create()
+                delModDialog.show()
+            }
         }
     }
 }
