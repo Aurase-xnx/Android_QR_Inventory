@@ -29,11 +29,12 @@ class UserManagementActivity : AppCompatActivity() {
         userListView.adapter = adapter
 
         userListView.setOnItemClickListener { parent, view, position, id ->
-        val item = parent.getItemAtPosition(position)
-        Log.d("position","= $position")
-        val searchedId = position+1
-        val cursor = db.query("login",null,"_id = ?", arrayOf(searchedId.toString()),null,null,null)
-            if (cursor.moveToFirst()){
+            val item = parent.getItemAtPosition(position)
+            Log.d("position","= $position")
+            val itemId = id
+            val cursor = db.query("login",null,"_id = ?", arrayOf(itemId.toString()),null,null,null)
+                if (cursor.moveToNext()){
+                val id = cursor.getString(cursor.getColumnIndexOrThrow("_id"))
                 val username = cursor.getString(cursor.getColumnIndexOrThrow("username"))
                 val password = cursor.getString(cursor.getColumnIndexOrThrow("password"))
 
@@ -47,10 +48,21 @@ class UserManagementActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     .setNegativeButton("Supprimer"){dialog, _ ->
-                        val intent = Intent(this,MainMenuActivity::class.java)
-                        intent.putExtra("username",username)
-                        intent.putExtra("password",password)
-                        startActivity(intent)
+                        if (username != "Admin"){
+                            val deletedUser = db.delete("login","_id = ?", arrayOf(itemId.toString()))
+                            if (deletedUser > 0) {
+                                // afficher un message de confirmation
+                                Toast.makeText(this, "L'enregistrement a été supprimé", Toast.LENGTH_SHORT).show()
+                                recreate()
+                            } else {
+                                // afficher un message d'erreur
+                                Toast.makeText(this, "Erreur lors de la suppression de l'enregistrement", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        else{
+                            Toast.makeText(this,"Vous ne pouvez pas supprimer le compte admin",Toast.LENGTH_SHORT).show()
+                            dialog.dismiss()
+                        }
                     }
                     .create()
                 delModDialog.show()
