@@ -19,6 +19,8 @@ class UserManagementActivity : AppCompatActivity() {
 
         var userListView = findViewById<ListView>(R.id.usermgmt_list_view)
 
+        val reloadButton = findViewById<ImageButton>(R.id.usermgmt_reloadView)
+
         val dbHelper = UserDBHelper(this@UserManagementActivity)
         val db = dbHelper.readableDatabase
         val cursor = db.query("login", null, null, null, null, null, null)
@@ -43,7 +45,6 @@ class UserManagementActivity : AppCompatActivity() {
                 .setPositiveButton("Modifier"){ dialog, _ ->
                     val intent = Intent(this,UserModActivity::class.java)
                     intent.putExtra("itemId",itemId.toString())
-                    Log.d("itemIdInUMA","Content of itemIdInUMA : $itemId")
                     startActivity(intent)
                 }
                 .setNegativeButton("Supprimer"){dialog, _ ->
@@ -51,7 +52,7 @@ class UserManagementActivity : AppCompatActivity() {
                         val deletedUser = db.delete("login","_id = ?", arrayOf(itemId.toString()))
                         if (deletedUser > 0) {
                             // afficher un message de confirmation
-                            Toast.makeText(this, "L'enregistrement a été supprimé", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "L'utilisateur " + username + " a été supprimé", Toast.LENGTH_SHORT).show()
                             recreate()
                         } else {
                             // afficher un message d'erreur
@@ -66,6 +67,9 @@ class UserManagementActivity : AppCompatActivity() {
                 .create()
             delModDialog.show()
             }
+        }
+        reloadButton.setOnClickListener(){
+            recreate()
         }
     }
 }

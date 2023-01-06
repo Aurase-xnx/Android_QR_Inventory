@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HeH Inventory</string>
 
-    <string-array name="spinner_array">
+    <string-array name="type_choice">
         <item>Smartphone</item>
         <item>Tablette</item>
     </string-array>

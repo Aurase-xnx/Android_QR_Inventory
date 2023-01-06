@@ -40,7 +40,6 @@ class SigninActivity : AppCompatActivity() {
             val username = SUsernameField.text.toString()
             val password = SPasswordField.text.toString()
             var rights = "Basic"
-            Log.d("wasaw","wasaw : $rights")
 
             if (username.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this@SigninActivity, "Please fill out all fields.", Toast.LENGTH_SHORT).show()
@@ -54,7 +53,6 @@ class SigninActivity : AppCompatActivity() {
             if (username == "Admin"){
                 rights = "S_U"
             }
-            Toast.makeText(this@SigninActivity, "BG$rights", Toast.LENGTH_SHORT).show()
             val userDbHelper = UserDBHelper(this@SigninActivity)
             val db = userDbHelper.writableDatabase
             val createTableSql = "CREATE TABLE IF NOT EXISTS login (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT NOT NULL, rights TEXT NOT NULL)"

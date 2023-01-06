@@ -41,8 +41,6 @@ class UserModActivity : AppCompatActivity() {
                 rightsSwitch = false
                 adminSwitch.isChecked = false
             }
-            Toast.makeText(this, username + password + rights, Toast.LENGTH_SHORT).show()
-
             userEdit.setText(username)
             passwordEdit.setText(password)
 

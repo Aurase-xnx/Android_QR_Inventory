@@ -4,13 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gestion de l'inventaire">
+            android:text="Gestion de l'inventaire"
+            android:textSize="16dp">
         </TextView>
         <Button
             android:id="@+id/inventorymgmt_Add"
@@ -18,17 +20,23 @@
             android:layout_height="wrap_content"
             android:text="Ajouter un apareil">
         </Button>
+        <ImageButton
+            android:id="@+id/inventorymgmt_ReloadView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_cached_24">
+        </ImageButton>
     </LinearLayout>
 
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ListView
             android:id="@+id/inventorymgmt_list_view"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
     </LinearLayout>
 
