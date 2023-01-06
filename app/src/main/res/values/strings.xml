@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">Dilhan_Eser_Project</string>
+    <string name="app_name">HeH Inventory</string>
+
+    <string-array name="spinner_array">
+        <item>Smartphone</item>
+        <item>Tablette</item>
+    </string-array>
+
 </resources>

@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class InventoryDBHelper (context: Context) : SQLiteOpenHelper(context, "heh_inventory", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        db?.execSQL("CREATE TABLE inventory (itemName TEXT PRIMARY KEY, description TEXT NOT NULL, qrCode TEXT NOT NULL)")
+        db?.execSQL("CREATE TABLE inventory (_id INTEGER PRIMARY KEY AUTOINCREMENT,type TEXT CHECK (type IN ('Tablette', 'Smartphone')),marque_et_modele TEXT,identifiant TEXT UNIQUE,url_fabricant TEXT,qrcode BLOB)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

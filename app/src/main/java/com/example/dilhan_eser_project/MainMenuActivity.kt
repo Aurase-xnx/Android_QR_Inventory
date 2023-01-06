@@ -38,7 +38,7 @@ class MainMenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
         mInventory.setOnClickListener(){
-            val intent = Intent(this, InventoryActivity::class.java)
+            val intent = Intent(this, InventoryManagementActivity::class.java)
             startActivity(intent)
         }
         val usernamee = intent.getStringExtra("username")
