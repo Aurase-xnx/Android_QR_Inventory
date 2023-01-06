@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper
 class UserDBHelper (context: Context) : SQLiteOpenHelper(context, "heh_inventory", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        db?.execSQL("CREATE TABLE login (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT NOT NULL)")
+        db?.execSQL("CREATE TABLE login (_id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT NOT NULL, rights TEXT NOT NULL)")
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {

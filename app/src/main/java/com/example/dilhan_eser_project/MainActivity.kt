@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
@@ -25,8 +26,8 @@ class MainActivity : AppCompatActivity() {
                 alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK"
                 ) { dialog, which ->
                     val intent = Intent(this,SigninActivity::class.java)
-                    intent.putExtra("AdminUser","Admin")
-                    intent.putExtra("rights","S_U")
+                    intent.putExtra("adminUser","Admin")
+                    Toast.makeText(this,"Veuillez choisir un mot de passe pour le compte administrateur",Toast.LENGTH_SHORT).show()
                     startActivity(intent)
                     finish()
                 }

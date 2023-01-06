@@ -23,20 +23,19 @@ class UserManagementActivity : AppCompatActivity() {
         val db = dbHelper.readableDatabase
         val cursor = db.query("login", null, null, null, null, null, null)
         val count = cursor.count
-        Log.d("TableActivity", "Cursor count: $count")
 
-        val adapter = SimpleCursorAdapter(this@UserManagementActivity, R.layout.user_list_schema, cursor, arrayOf("_id","username", "password"), intArrayOf(R.id.usermgmt_item_text1,R.id.usermgmt_item_text2,R.id.usermgmt_item_text3), 0)
+        val adapter = SimpleCursorAdapter(this@UserManagementActivity, R.layout.user_list_schema, cursor, arrayOf("_id","username", "password","rights"), intArrayOf(R.id.usermgmt_item_text1,R.id.usermgmt_item_text2,R.id.usermgmt_item_text3,R.id.usermgmt_item_text4), 0)
         userListView.adapter = adapter
 
         userListView.setOnItemClickListener { parent, view, position, id ->
             val item = parent.getItemAtPosition(position)
-            Log.d("position","= $position")
             val itemId = id
             val cursor = db.query("login",null,"_id = ?", arrayOf(itemId.toString()),null,null,null)
             if (cursor.moveToNext()){
             val id = cursor.getString(cursor.getColumnIndexOrThrow("_id"))
             val username = cursor.getString(cursor.getColumnIndexOrThrow("username"))
             val password = cursor.getString(cursor.getColumnIndexOrThrow("password"))
+            val rights = cursor.getString(cursor.getColumnIndexOrThrow("rights"))
 
             val delModDialog = AlertDialog.Builder(this)
                 .setMessage(username)

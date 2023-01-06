@@ -2,6 +2,7 @@ package com.example.dilhan_eser_project
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -22,10 +23,13 @@ class MainMenuActivity : AppCompatActivity() {
         mAdmin = findViewById(R.id.mainmenu_Admin)
         mInventory = findViewById(R.id.mainmenu_Inventory)
 
+        val rights = intent.getStringExtra("rights")
         val username = intent.getStringExtra("username")
+        Log.d("RightsOfUser","Rights of current user : $rights")
+
         val formattedString = String.format("Bonjour %s", username)
         mUsername.text = formattedString
-        if (username == "Admin"){
+        if (rights == "S_U"){
             val button = findViewById<Button>(R.id.mainmenu_Admin)
             button.visibility = View.VISIBLE
         }
